@@ -19,10 +19,10 @@ class Json
         if (!$data) {
             $data = Code::statusMessage($code);
         }
-        $response = (new HttpFactory)->createResponse($code)->withHeader(
+        $response = ($response??(new HttpFactory)->createResponse($code))->withHeader(
             'Content-Type',
             'application/json'
-        );
+        )->withStatus($code);
         if ($code < 300) {
             if (!is_array($data) || !isset($data['data']) || count($data) !== 1) {
                 $data = ['data' => $data];
@@ -31,9 +31,9 @@ class Json
             if ($data instanceof Throwable) {
                 $data = [
                     'message' => $data->getMessage(),
-                    'file' => $data->getFile(),
+                    /*'file' => $data->getFile(),
                     'line' => $data->getLine(),
-                    'trace' => $data->getTrace()
+                    'trace' => $data->getTrace()*/
                 ];
             } elseif (is_string($data)) {
                 $data = ['message' => $data];

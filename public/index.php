@@ -14,6 +14,36 @@ try {
     $serverParams = $request->getServerParams();
     $request_uri = explode('?', $serverParams['REQUEST_URI'])[0];
     $script_name = dirname($serverParams['SCRIPT_NAME']);
+    // use nginx fastcgi_param base_path /content-provider
+    // if the location is on /content-provider
+    // example
+    /*
+        server {
+            # block server ....
+
+            # .....
+            # start here
+            location ~ /content-provider(/|/?$) {
+                root /path/to/app/public;
+                index index.php;
+                # this for basepath
+                fastcgi_param base_path /content-provider;
+
+                # php listener
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		        include fastcgi_params;
+		        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		        fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+		        fastcgi_index index.php;
+
+		        fastcgi_intercept_errors off;
+		        fastcgi_buffers 16 16k;
+		        fastcgi_buffer_size 32k;
+        		fastcgi_pass unix:/var/run/php/socket.sock;
+                try_files /index.php$is_args$args =404;
+            }
+        }
+     */
     $basePath = getenv('base_path')?:($serverParams['base_path']??null);
     if ($basePath) {
         $basePath = preg_replace('~[\\\/]+~', '/', $basePath);
