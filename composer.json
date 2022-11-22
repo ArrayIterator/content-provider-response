@@ -1,0 +1,33 @@
+{
+    "name": "arrayiterator/aggregator-cp-sdk",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ArrayIterator",
+            "email": "arrayiterator@gmail.com"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true
+    },
+    "require": {
+        "php": "^8.0",
+        "ext-curl": "*",
+        "guzzlehttp/guzzle": "^7.5",
+        "slim/slim": "~4",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Arrayiterator\\AggregatorCpSdk\\": "app/src"
+        },
+        "psr-0": {
+            "Arrayiterator\\AggregatorCpSdk\\": "app/src"
+        }
+    }
+}
