@@ -76,4 +76,10 @@ server {
         try_files @proxy =404;
     }
 }
-``
+```
+
+## NOTE
+
+[Arrayiterator\AggregatorCpSdk\Endpoints\Thumbnail](app/Endpoints/Thumbnails.php) only for example image thumbnail generation endpoints.
+
+You could ignore this.

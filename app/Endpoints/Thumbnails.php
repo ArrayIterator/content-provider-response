@@ -1,4 +1,7 @@
 <?php
+/**
+ * @note This endpoint only for staging environment to handle image thumbnail generations
+ */
 declare(strict_types=1);
 
 namespace Arrayiterator\AggregatorCpSdk\Endpoints;
@@ -21,9 +24,7 @@ class Thumbnails extends Endpoint
     private ?string $tempDir = null;
 
     public function generate(
-        ServerRequestInterface $request,
-        ResponseInterface $response,
-        array $params = []
+        ServerRequestInterface $request
     ): ResponseInterface {
         /**
          * @global App $app
@@ -32,6 +33,7 @@ class Thumbnails extends Endpoint
         $basePath = $app?->getBasePath()?:'';
         $basePath = trim($basePath, '/');
         $queryParams = $request->getParsedBody();
+        // if contains `UPLOAD_AUTH` cgi param.
         $auth = $request->getServerParams()['UPLOAD_AUTH']??null;
         if ($auth && ($queryParams['auth']??null) !== $auth) {
             return Json::encode(
@@ -124,7 +126,7 @@ class Thumbnails extends Endpoint
             }
 
             $imageName = basename($frame);
-            $imageName = "{$screenshotSizeWidth}x{$screenshotSizeHeight}-$imageName";
+            $imageName = "{$screenshotSizeWidth}x$screenshotSizeHeight-$imageName";
             $imageTarget = "$targetDir/$imageName";
             $factory = new ResizerFactory();
             $resizer = $factory

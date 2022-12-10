@@ -24,7 +24,7 @@ class VideoMetaData
     ) {
         if ((debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['class']??null) !== FrameAncestor::class) {
             throw new InvalidArgumentException(
-                'Video meta data only allowed via'
+                'Video meta data only allowed via: '.FrameAncestor::class
             );
         }
     }
