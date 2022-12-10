@@ -149,6 +149,7 @@ class Thumbnails extends Endpoint
             unset($resizer, $factory, $frameAncestor, $metadata);
             $path = "$basePath$targetPath/$imageName";
             $path = '/'.ltrim(preg_replace('~[\\\/]+~', '/', $path), '/');
+            $path = str_replace('//', '/', $path);
             $urlPath = $request->getUri()
                 ->withQuery('')
                 ->withFragment('')
