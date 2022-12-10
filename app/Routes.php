@@ -14,7 +14,7 @@ if (!isset($app) || !$app instanceof App) {
 $app->add(function (ServerRequestInterface $request, RequestHandlerInterface $handler) use ($app) {
     try {
         $namespace = "Arrayiterator\\AggregatorCpSdk\\Endpoints";
-        foreach (new DirectoryIterator(__DIR__.'/src/Endpoints') as $endpoint) {
+        foreach (new DirectoryIterator(__DIR__.'/Endpoints') as $endpoint) {
             if (!$endpoint->isFile() || $endpoint->isDot() || $endpoint->getExtension() !== 'php') {
                 continue;
             }

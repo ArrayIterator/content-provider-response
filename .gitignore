@@ -2,3 +2,6 @@
 /vendor
 .idea/
 .tmp/
+/public/uploads/*
+/public/uploads/*/**
+!/public/uploads/.gitkeep

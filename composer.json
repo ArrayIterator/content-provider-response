@@ -24,10 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Arrayiterator\\AggregatorCpSdk\\": "app/src"
+            "Arrayiterator\\AggregatorCpSdk\\": "app/Src",
+            "Arrayiterator\\AggregatorCpSdk\\Endpoints\\": "app/Endpoints"
         },
         "psr-0": {
-            "Arrayiterator\\AggregatorCpSdk\\": "app/src"
+            "Arrayiterator\\AggregatorCpSdk\\": "app/Src",
+            "Arrayiterator\\AggregatorCpSdk\\Endpoints\\": "app/Endpoints"
         }
     }
 }
