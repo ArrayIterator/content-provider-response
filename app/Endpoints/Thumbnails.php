@@ -147,10 +147,12 @@ class Thumbnails extends Endpoint
             $basePath = $basePath ? "$basePath/" : $basePath;
             // suddenly call destruct
             unset($resizer, $factory, $frameAncestor, $metadata);
+            $path = "$basePath$targetPath/$imageName";
+            $path = '/'.ltrim(preg_replace('~[\\\/]+~', '/', $path), '/');
             $urlPath = $request->getUri()
                 ->withQuery('')
                 ->withFragment('')
-                ->withPath("$basePath$targetPath/$imageName");
+                ->withPath($path);
             return Json::encode([
                 'width' => $result['width'],
                 'height' => $result['height'],
