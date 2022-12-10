@@ -159,7 +159,10 @@ class Thumbnails extends Endpoint
                 'url' => $urlPath
             ]);
         } catch (Throwable $e) {
-            return Json::encode($e, 500);
+            return Json::encode([
+                'message' => $e,
+                'error' => 'SYSTEM_ERROR'
+            ], 500);
         }
     }
 
