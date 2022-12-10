@@ -122,8 +122,10 @@ class Thumbnails extends Endpoint
                     417
                 );
             }
+
             $imageName = basename($frame);
-            $imageTarget = "$targetDir/{$screenshotSizeWidth}x{$screenshotSizeHeight}-$imageName";
+            $imageName = "{$screenshotSizeWidth}x{$screenshotSizeHeight}-$imageName";
+            $imageTarget = "$targetDir/$imageName";
             $factory = new ResizerFactory();
             $resizer = $factory
                 ->create($frame)
