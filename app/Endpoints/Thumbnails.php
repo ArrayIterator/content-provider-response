@@ -79,7 +79,7 @@ class Thumbnails extends Endpoint
         if ($screenshotSizeWidth > 1280) {
             $screenshotSizeWidth = 1280;
         }
-        $screenshotSizeHeight = $queryParams['width']??$screenshotSizeWidth;
+        $screenshotSizeHeight = $queryParams['height']??$screenshotSizeWidth;
         if (!is_numeric($screenshotSizeHeight)) {
             $screenshotSizeHeight = 640;
         }
@@ -123,7 +123,7 @@ class Thumbnails extends Endpoint
                 );
             }
             $imageName = basename($frame);
-            $imageTarget = "$targetDir/$imageName";
+            $imageTarget = "$targetDir/{$screenshotSizeWidth}x{$screenshotSizeHeight}-$imageName";
             $factory = new ResizerFactory();
             $resizer = $factory
                 ->create($frame)
